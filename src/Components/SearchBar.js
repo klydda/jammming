@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-function SearchBar({search, onSearch}) {
+function SearchBar({search, onSearch, onSubmit}) {
 
     return (
         <>
-            <form autoComplete="off">
+            <form autoComplete="off" onSubmit={onSubmit}>
                 <label for="search">Search</label>
                 <input 
                     id="search"
