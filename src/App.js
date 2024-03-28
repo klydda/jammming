@@ -11,7 +11,7 @@ function App() {
       setSearch(e.target.value);
   }
 
-  function handleSubmit(e) {
+  function handleSearchSubmit(e) {
       e.preventDefault();
       const url = constructUrl();
       setUrl(url);
@@ -28,7 +28,7 @@ function App() {
           <SearchBar
               search={search}
               onSearch={handleSearchInput}
-              onSubmit={handleSubmit}
+              onSubmit={handleSearchSubmit}
           />
 
           <div className="lists">

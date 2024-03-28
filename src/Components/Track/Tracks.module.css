@@ -16,6 +16,25 @@
 
 }
 
-.songName {
+.infoSpan {
+    margin-right: 5px;
+}
 
+.divider {
+    margin-right: 5px;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    padding: 40% 20px;
+    border-radius: 200px;
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 5%);
+}
+
+.button:active {
+    background-color: rgba(0, 0, 0, 7%);
 }

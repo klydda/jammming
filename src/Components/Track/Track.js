@@ -11,12 +11,13 @@ function Track({ id, songName, artist, album }) {
                 className={styles.songName} >
                 {songName}
             </h4>
-            <span>{artist}</span>
-            <span>{album}</span>
+            <span className={styles.infoSpan}>👤 {artist}</span>
+            <span className={styles.divider}>|</span>
+            <span>💿 {album}</span>
             </div>
 
             <div className={styles.buttonWrapper}>
-                <button>X</button>
+                <button className={styles.button}>X</button>
             </div>
 
         </div>
