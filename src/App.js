@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import SearchBar from './Components/SearchBar';
-import SearchResults from './Components/SearchResults';
+import SearchBar from './Components/SearchBar/SearchBar';
+import SearchResults from './Components/SearchResults/SearchResults';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -30,9 +30,13 @@ function App() {
               onSearch={handleSearchInput}
               onSubmit={handleSubmit}
           />
-          <SearchResults 
-              url={url}
-          />
+
+          <div className="lists">
+            <SearchResults 
+                url={url}
+            />
+          </div>
+
       </div>
       
   );

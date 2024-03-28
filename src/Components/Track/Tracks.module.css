@@ -1,0 +1,21 @@
+.trackWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 10%);
+    margin: 5px 0px;
+    padding: 10px 10px;
+}
+
+.trackInfo {
+    text-align: left;
+}
+
+.buttonWrapper {
+
+}
+
+.songName {
+
+}
