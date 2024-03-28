@@ -1,0 +1,10 @@
+.searchResultsWrapper {
+    width: 500px;
+    min-height: 800px;
+    height: auto;
+    margin: 10px 20px;
+    padding: 10px 10px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+}

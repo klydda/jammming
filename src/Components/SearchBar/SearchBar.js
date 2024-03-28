@@ -14,7 +14,6 @@ function SearchBar({search, onSearch, onSubmit}) {
                 />
                 <button>🔍</button>
             </form>
-            <p>{search}</p>
         </>
     );
 }

@@ -1,0 +1,40 @@
+.trackWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 10%);
+    margin: 5px 0px;
+    padding: 10px 10px;
+}
+
+.trackInfo {
+    text-align: left;
+}
+
+.buttonWrapper {
+
+}
+
+.infoSpan {
+    margin-right: 5px;
+}
+
+.divider {
+    margin-right: 5px;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    padding: 40% 20px;
+    border-radius: 200px;
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 5%);
+}
+
+.button:active {
+    background-color: rgba(0, 0, 0, 7%);
+}
