@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Tracks.module.css';
 
+
 function Track({ id, songName, artist, album }) {
     return (
         <div className={styles.trackWrapper}>
@@ -17,7 +18,7 @@ function Track({ id, songName, artist, album }) {
             </div>
 
             <div className={styles.buttonWrapper}>
-                <button className={styles.button}>X</button>
+                <button className={styles.button}>+</button>
             </div>
 
         </div>

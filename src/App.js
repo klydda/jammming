@@ -6,12 +6,15 @@ import Tracklist from './Components/Tracklist/TrackList';
 import Track from './Components/Track/Track';
 
 function App() {
+
+  //State and event handler for search bar input
   const [search, setSearch] = useState('');
 
   function handleSearchInput(e) {
       setSearch(e.target.value);
   }
 
+  //State and event handler for search bar submit
   const [url, setUrl] = useState('');
   function handleSearchSubmit(e) {
       e.preventDefault();
@@ -19,15 +22,23 @@ function App() {
       setUrl(url);
   }
 
+  //Constructs correct URL based on search input
   function constructUrl() {
       const baseUrl = 'part1'
       const searchQuery = search;
       return `${baseUrl}${searchQuery}`;
   }
 
+  //State and state setter that contains the search result as a list of songs
   const [searchResults, setSearchResults] = useState([]);
   function handleSearchResults(songs){
-    setSearchResults(...songs);
+    setSearchResults(songs);
+  }
+
+  //State and state setter that contains the list of selected songs by the user
+  const [trackList, setTrackList] = useState([]);
+  function handleTrackList(tracks){
+    setTrackList(...tracks);
   }
 
   return (
