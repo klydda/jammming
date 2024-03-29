@@ -43,13 +43,21 @@ function App() {
     setSelectedSongIds((prev) => [...prev, song]);
   }
 
+  //Updates selectedSongs based on change in selectedSongIds
   useEffect(() => {
     const filteredSongs = searchResults.filter((song) => {
       return selectedSongIds.includes(song.songName);
     });
 
     setSelectedSongs(filteredSongs);
-  });
+  }, [selectedSongIds]);
+
+  //State and event handler managing playlist name
+  const [playlistName, setPlaylistName] = useState('');
+
+  function handlePlaylistNameInput(e){
+    setPlaylistName(e.target.value);
+  }
 
   return (
       <div className="App">
@@ -72,6 +80,8 @@ function App() {
 
           <Playlist 
             selectedSongs={selectedSongs}
+            playlistName={playlistName}
+            onNameChange={handlePlaylistNameInput}
           />
           </div>
 
