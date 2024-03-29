@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import SearchBar from './Components/SearchBar/SearchBar';
 import SearchResults from './Components/SearchResults/SearchResults';
+import Tracklist from './Components/Tracklist/TrackList';
+import Track from './Components/Track/Track';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -35,10 +37,15 @@ function App() {
               onSearch={handleSearchInput}
               onSubmit={handleSearchSubmit}
           />
+          
+          <SearchResults 
+              url={url}
+              onSearchResults={handleSearchResults}
+          />
 
-          <div className="lists">
-            <SearchResults 
-                url={url}
+          <div>
+            <Tracklist 
+              songList={searchResults}
             />
           </div>
 
