@@ -12,13 +12,14 @@ function Playlist({selectedSongs, playlistName, onNameChange}){
                     <input
                         id="playlistName"
                         type='text'
+                        className={styles.input}
                         value={playlistName}
                         onChange={onNameChange}
 
                     />
                 </form>
             </div>
-            <div className={styles.searchResultsWrapper}>
+            <div className={styles.tracksWrapper}>
                 {selectedSongs.map((element, index) => {
                     return(
                         <Track
@@ -31,6 +32,12 @@ function Playlist({selectedSongs, playlistName, onNameChange}){
                     );
                 })}
             </div>
+
+            <button
+                type="submit"
+                form="playlistName"
+                className={styles.saveToSpotify}
+            >Save To Spotify</button>
 
         </div>
     );
