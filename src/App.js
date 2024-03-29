@@ -5,12 +5,12 @@ import SearchResults from './Components/SearchResults/SearchResults';
 
 function App() {
   const [search, setSearch] = useState('');
-  const [url, setUrl] = useState('');
 
   function handleSearchInput(e) {
       setSearch(e.target.value);
   }
 
+  const [url, setUrl] = useState('');
   function handleSearchSubmit(e) {
       e.preventDefault();
       const url = constructUrl();
@@ -21,6 +21,11 @@ function App() {
       const baseUrl = 'part1'
       const searchQuery = search;
       return `${baseUrl}${searchQuery}`;
+  }
+
+  const [searchResults, setSearchResults] = useState([]);
+  function handleSearchResults(songs){
+    setSearchResults(...songs);
   }
 
   return (
