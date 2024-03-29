@@ -24,27 +24,17 @@ const result = {
     ]
 }
 
-const {songs} = result;
+
+function SearchResults({url, onSearchResults}){
+
+    // Function to make the API call here
+
+    // Function to format result here
+    const songs = result.songs;
 
 
-function SearchResults({url}){
-
-    if(url === 'part1face'){
-        return (
-            <div className={styles.searchResultsWrapper}>
-                {songs.map((element, index) => {
-                    return(
-                        <Track
-                            id={index}
-                            songName={element.songName}
-                            artist={element.artist}
-                            album={element.album}
-                        />
-                    );
-                })}
-            </div>
-        );
-    }
+    //Set state in App.js (parent)
+    onSearchResults(songs);
 
 }
 
