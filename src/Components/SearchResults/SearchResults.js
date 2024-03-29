@@ -35,23 +35,6 @@ function SearchResults({url, onSearchResults}){
 
     //Set state in App.js (parent)
     onSearchResults(songs);
-    
-    // if(url === 'part1face'){
-    //     return (
-    //         <div className={styles.searchResultsWrapper}>
-    //             {songs.map((element, index) => {
-    //                 return(
-    //                     <Track
-    //                         id={index}
-    //                         songName={element.songName}
-    //                         artist={element.artist}
-    //                         album={element.album}
-    //                     />
-    //                 );
-    //             })}
-    //         </div>
-    //     );
-    // }
 
 }
 

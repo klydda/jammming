@@ -3,7 +3,7 @@ import './App.css';
 import SearchBar from './Components/SearchBar/SearchBar';
 import SearchResults from './Components/SearchResults/SearchResults';
 import Tracklist from './Components/Tracklist/TrackList';
-import Track from './Components/Track/Track';
+import Playlist from './Components/Playlist/Playlist';
 
 function App() {
 
@@ -35,10 +35,29 @@ function App() {
     setSearchResults(songs);
   }
 
-  //State and state setter that contains the list of selected songs by the user
-  const [trackList, setTrackList] = useState([]);
-  function handleTrackList(tracks){
-    setTrackList(...tracks);
+  //State and state setters. First contains array of song names, second of song objects.
+  const [selectedSongIds, setSelectedSongIds] = useState([]);
+  const [selectedSongs, setSelectedSongs] = useState([]);
+  function handleSetSelectedSong(e){
+    const song = e.target.id;
+    setSelectedSongIds((prev) => {
+      return [
+        ...prev,
+        song
+      ]
+    });
+
+    const filteredSongs = [];
+
+    searchResults.forEach((song) =>{
+      selectedSongIds.forEach((id) => {
+        if(song.songName === id){
+          filteredSongs.push(song);
+        }
+      })
+    });
+
+    setSelectedSongs(filteredSongs);
   }
 
   return (
@@ -54,11 +73,17 @@ function App() {
               onSearchResults={handleSearchResults}
           />
 
-          <div>
-            <Tracklist 
-              songList={searchResults}
-            />
+          <div className='lists'>
+          <Tracklist 
+            songList={searchResults}
+            onSelectSong={handleSetSelectedSong}
+          />
+
+          <Playlist 
+            selectedSongs={selectedSongs}
+          />
           </div>
+
 
       </div>
       
