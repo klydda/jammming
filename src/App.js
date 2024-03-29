@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import SearchBar from './Components/SearchBar/SearchBar';
 import SearchResults from './Components/SearchResults/SearchResults';
@@ -40,25 +40,16 @@ function App() {
   const [selectedSongs, setSelectedSongs] = useState([]);
   function handleSetSelectedSong(e){
     const song = e.target.id;
-    setSelectedSongIds((prev) => {
-      return [
-        ...prev,
-        song
-      ]
-    });
+    setSelectedSongIds((prev) => [...prev, song]);
+  }
 
-    const filteredSongs = [];
-
-    searchResults.forEach((song) =>{
-      selectedSongIds.forEach((id) => {
-        if(song.songName === id){
-          filteredSongs.push(song);
-        }
-      })
+  useEffect(() => {
+    const filteredSongs = searchResults.filter((song) => {
+      return selectedSongIds.includes(song.songName);
     });
 
     setSelectedSongs(filteredSongs);
-  }
+  });
 
   return (
       <div className="App">
