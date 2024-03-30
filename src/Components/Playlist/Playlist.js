@@ -5,13 +5,15 @@ import styles from './Playlist.module.css';
 function Playlist({selectedSongs, playlistName, onNameChange}){
     return (
         <div className={styles.songListWrapper}>
-            <div>
+            <div className={styles.formContainer}>
                 <form
                     id='playlistName'
+                    autoComplete='off'
                 >
                     <input
                         id="playlistName"
                         type='text'
+                        placeholder='Enter playlist name'
                         className={styles.input}
                         value={playlistName}
                         onChange={onNameChange}
