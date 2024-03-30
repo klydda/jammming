@@ -2,7 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({selectedSongs, playlistName, onNameChange}){
+function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong}){
     return (
         <div className={styles.songListWrapper}>
             <div className={styles.formContainer}>
@@ -25,11 +25,13 @@ function Playlist({selectedSongs, playlistName, onNameChange}){
                 {selectedSongs.map((element, index) => {
                     return(
                         <Track
-                            id={index}
+                            key={`song${index}`}
+                            id={element.id}
                             songName={element.songName}
                             artist={element.artist}
                             album={element.album}
                             onSelectSong="Playlist"
+                            onRemoveSong={onRemoveSong}
                         />
                     );
                 })}

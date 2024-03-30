@@ -10,7 +10,8 @@ function Tracklist({songList, onSelectSong}){
                 {songList.map((element, index) => {
                     return(
                         <Track
-                            id={index}
+                            key={`song${index}`}
+                            id={element.id}
                             songName={element.songName}
                             artist={element.artist}
                             album={element.album}
