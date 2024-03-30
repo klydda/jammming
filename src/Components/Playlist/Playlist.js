@@ -2,22 +2,47 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({selectedSongs}){
+function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong}){
     return (
         <div className={styles.songListWrapper}>
-            <div className={styles.searchResultsWrapper}>
+            <div className={styles.formContainer}>
+                <form
+                    id='playlistName'
+                    autoComplete='off'
+                >
+                    <input
+                        id="playlistName"
+                        type='text'
+                        placeholder='Enter playlist name'
+                        className={styles.input}
+                        value={playlistName}
+                        onChange={onNameChange}
+
+                    />
+                </form>
+            </div>
+            <div className={styles.tracksWrapper}>
                 {selectedSongs.map((element, index) => {
                     return(
                         <Track
-                            id={index}
+                            key={`song${index}`}
+                            id={element.id}
                             songName={element.songName}
                             artist={element.artist}
                             album={element.album}
                             onSelectSong="Playlist"
+                            onRemoveSong={onRemoveSong}
                         />
                     );
                 })}
             </div>
+
+            <button
+                type="submit"
+                form="playlistName"
+                className={styles.saveToSpotify}
+            >Save To Spotify</button>
+
         </div>
     );
 }

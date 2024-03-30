@@ -7,4 +7,33 @@
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.formContainer {
+    width: 100%;
+}
+
+.tracksWrapper{
+    width: 100%;
+}
+
+.saveToSpotify {
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.input {
+    width: 100%;
+    height: 70px;
+    margin: 5px 0;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.input:focus {
+    outline: none;
 }

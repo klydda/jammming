@@ -39,17 +39,31 @@ function App() {
   const [selectedSongIds, setSelectedSongIds] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
   function handleSetSelectedSong(e){
-    const song = e.target.id;
-    setSelectedSongIds((prev) => [...prev, song]);
+    const songId = e.target.id;
+    setSelectedSongIds((prev) => [...prev, songId]);
   }
 
+  function handleRemoveSelectedSong(e){
+    const songToRemove = e.target.id;
+    const filteredIdList = selectedSongIds.filter((song) => song !== songToRemove);
+    setSelectedSongIds(filteredIdList);
+  }
+
+  //Updates selectedSongs based on change in selectedSongIds
   useEffect(() => {
     const filteredSongs = searchResults.filter((song) => {
-      return selectedSongIds.includes(song.songName);
+      return selectedSongIds.includes(song.id);
     });
 
     setSelectedSongs(filteredSongs);
-  });
+  }, [selectedSongIds]);
+
+  //State and event handler managing playlist name
+  const [playlistName, setPlaylistName] = useState('');
+
+  function handlePlaylistNameInput(e){
+    setPlaylistName(e.target.value);
+  }
 
   return (
       <div className="App">
@@ -72,6 +86,9 @@ function App() {
 
           <Playlist 
             selectedSongs={selectedSongs}
+            playlistName={playlistName}
+            onRemoveSong={handleRemoveSelectedSong}
+            onNameChange={handlePlaylistNameInput}
           />
           </div>
 

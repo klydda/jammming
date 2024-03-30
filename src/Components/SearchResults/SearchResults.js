@@ -7,16 +7,19 @@ import styles from './SearchResults.module.css';
 const result = {
     songs: [
         {
+            id: "1",
             songName: "Face to face",
             artist: 'Daft Punk',
             album: 'Discovery'
         },
         {
+            id: "2",
             songName: "FACE",
             artist: "BROCKHAMPTON",
             album: "SATURATION"
         },
         {
+            id: "3",
             songName: "Eyes without a face",
             artist: "Billy Idol",
             album: "Rebel Yell"
