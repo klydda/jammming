@@ -91,10 +91,10 @@ function App() {
 
   if(auth === false){
     return (
-      <>
+      <div className='App'>
         <AuthButton onClick={handleAuth} />
         <p>{accessToken}</p>
-      </>
+      </div>
     );
   }
 

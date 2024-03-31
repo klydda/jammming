@@ -4,7 +4,7 @@ import styles from './AuthButton.module.css';
 function AuthButton({onClick}){
     return (
         <div className={styles.authWrapper}>
-            <button onClick={onClick}>Connect your Spotify Account</button>
+            <button className={styles.button} onClick={onClick}>Connect your Spotify Account</button>
         </div>
     );
 }
