@@ -4,11 +4,29 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import SearchResults from './Components/SearchResults/SearchResults';
 import Tracklist from './Components/Tracklist/TrackList';
 import Playlist from './Components/Playlist/Playlist';
+import AuthButton from './Components/AuthButton/AuthButton';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
 
 let accessToken = '';
 
 function App() {
+
+  //Handle auth
+  const [auth, setAuth] = useState(false);
+  function handleAuth(e){
+    redirectToAuth();
+    setAuth(true);
+  }
+
+  useEffect(() => {
+    const token = extractToken();
+
+    if(token){
+      console.log('Token found: ' + token);
+      accessToken = token;
+      setAuth(true);
+    }
+  }, []);
 
   //State and event handler for search bar input
   const [search, setSearch] = useState('');
@@ -21,7 +39,6 @@ function App() {
   const [url, setUrl] = useState('');
   function handleSearchSubmit(e) {
       e.preventDefault();
-      redirectToAuth();
       accessToken = extractToken();
       const url = constructUrl();
       setUrl(url);
@@ -68,6 +85,17 @@ function App() {
 
   function handlePlaylistNameInput(e){
     setPlaylistName(e.target.value);
+  }
+
+  console.log(accessToken);
+
+  if(auth === false){
+    return (
+      <div className='App'>
+        <AuthButton onClick={handleAuth} />
+        <p>{accessToken}</p>
+      </div>
+    );
   }
 
   return (

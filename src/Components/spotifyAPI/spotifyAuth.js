@@ -19,10 +19,11 @@ export function extractToken(){
     const currentURL = window.location.href;
 
     //Extract token
-    const tokenStringStartIndex = currentURL.indexOf('=') +1;
-    const tokenStringEndIndex = currentURL.indexOf('&');
-    const token = currentURL.slice(tokenStringStartIndex, tokenStringEndIndex);
+    const match = currentURL.match(/access_token=([^&]*)/);
+    const token = match ? match[1] : null;
 
+    console.log('Token in extractToken: ' + token);
+    
     return token;
 }
 
