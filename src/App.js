@@ -4,6 +4,9 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import SearchResults from './Components/SearchResults/SearchResults';
 import Tracklist from './Components/Tracklist/TrackList';
 import Playlist from './Components/Playlist/Playlist';
+import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
+
+let accessToken = '';
 
 function App() {
 
@@ -18,6 +21,8 @@ function App() {
   const [url, setUrl] = useState('');
   function handleSearchSubmit(e) {
       e.preventDefault();
+      redirectToAuth();
+      accessToken = extractToken();
       const url = constructUrl();
       setUrl(url);
   }
