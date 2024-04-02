@@ -2,7 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong}){
+function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave}){
     return (
         <div className={styles.songListWrapper}>
             <div className={styles.formContainer}>
@@ -41,6 +41,7 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong}){
             <button
                 type="submit"
                 form="playlistName"
+                onClick={onSave}
                 className={styles.saveToSpotify}
             >Save To Spotify</button>
 

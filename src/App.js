@@ -5,6 +5,9 @@ import Tracklist from './Components/Tracklist/TrackList';
 import Playlist from './Components/Playlist/Playlist';
 import AuthButton from './Components/AuthButton/AuthButton';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
+import spotifySearch from './Components/spotifyAPI/spotifySearch';
+import spotifyUser from './Components/spotifyAPI/spotifyUser';
+import newPlayList from './Components/spotifyAPI/spotifySavePlaylist';
 
 //API info
 let accessToken = '';
@@ -29,7 +32,7 @@ function App() {
   }, []);
 
   //State and event handler for search bar input
-  const [search, setSearch] = useState('');
+   const [search, setSearch] = useState('');
 
   function handleSearchInput(e) {
       setSearch(e.target.value);
@@ -38,78 +41,8 @@ function App() {
   //State and event handler for search bar submit
   function handleSearchSubmit(e) {
       e.preventDefault();
-      fetchSongs();
+      spotifySearch(accessToken, search, setSearchResults);
   }
-
-  async function fetchSongs() {
-    const searchBaseURL = 'https://api.spotify.com/v1/search';
-    const queryBase = '?q=';
-    const generalSearch = encodeURIComponent(search);
-    const type = 'type=track';
-    const queryString = `${queryBase}${generalSearch}&${type}`;
-    const encodedString = encodeURIComponent(queryString);
-    const url = searchBaseURL + queryString;
-
-    console.log(url);
-
-    try {
-      const headers = {
-        'Authorization': `Bearer ${accessToken}`
-      };
-  
-      // Await the response of the fetch call, including the headers in the options
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: headers 
-      });
-  
-      // Check if the request was successful
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      // Await the response to be parsed as JSON
-      const data = await response.json();
-      // Do something with the data
-      console.log(data);
-      
-      const processedSongs = formatSongs(data);
-      setSearchResults(processedSongs);
-      
-    } catch (error) {
-      // Log any errors to the console
-      console.error('There was a problem with your fetch operation:', error);
-    }
-  }
-
-  //
-  function formatSongs(json){
-    if (json.tracks && json.tracks.items){
-        const items = json.tracks.items;
-        const songs = items.map((item) =>{
-          let artists = '';
-          
-          item.artists.forEach((artist, index) => {
-            return artists = artists += ', ' + artist.name;
-          });
-
-          artists = artists.slice(2, artists.length); //Removes first to characters, which are always ', '.
-
-          return {
-              id: item.id,
-              songName: item.name,
-              artist: artists,
-              album: item.album.name,
-              uri: item.uri
-          };
-        });
-
-        return songs;
-
-    } else {
-        return [];
-    }
-
-}
 
   //State and state setter that contains the search result as a list of songs
   const [searchResults, setSearchResults] = useState([]);
@@ -142,6 +75,18 @@ function App() {
     setPlaylistName(e.target.value);
   }
 
+  async function handleSave(e){
+    e.preventDefault();
+
+    if(playlistName){
+      const user = await spotifyUser(accessToken);
+      newPlayList(user.id, playlistName, accessToken, selectedSongs);
+
+    } else {
+      alert('Please enter a name for your playlist before saving');
+    }
+  }
+
   if(auth === false){
     return (
       <div className='App'>
@@ -169,6 +114,7 @@ function App() {
             playlistName={playlistName}
             onRemoveSong={handleRemoveSelectedSong}
             onNameChange={handlePlaylistNameInput}
+            onSave={handleSave}
           />
           </div>
 
