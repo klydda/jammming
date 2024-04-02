@@ -30,6 +30,7 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong}){
                             songName={element.songName}
                             artist={element.artist}
                             album={element.album}
+                            uri={element.uri}
                             onSelectSong="Playlist"
                             onRemoveSong={onRemoveSong}
                         />

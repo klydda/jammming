@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SearchBar from './Components/SearchBar/SearchBar';
-import SearchResults from './Components/SearchResults/SearchResults';
 import Tracklist from './Components/Tracklist/TrackList';
 import Playlist from './Components/Playlist/Playlist';
 import AuthButton from './Components/AuthButton/AuthButton';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
 
+//API info
 let accessToken = '';
 
 function App() {
@@ -36,20 +36,72 @@ function App() {
   }
 
   //State and event handler for search bar submit
-  const [url, setUrl] = useState('');
   function handleSearchSubmit(e) {
       e.preventDefault();
-      accessToken = extractToken();
-      const url = constructUrl();
-      setUrl(url);
+      fetchSongs();
   }
 
-  //Constructs correct URL based on search input
-  function constructUrl() {
-      const baseUrl = 'part1'
-      const searchQuery = search;
-      return `${baseUrl}${searchQuery}`;
+  async function fetchSongs() {
+    const searchBaseURL = 'https://api.spotify.com/v1/search';
+    const queryBase = '?q=';
+    const generalSearch = encodeURIComponent(search);
+    const type = 'type=track';
+    const queryString = `${queryBase}${generalSearch}&${type}`;
+    const encodedString = encodeURIComponent(queryString);
+    const url = searchBaseURL + queryString;
+
+    console.log(url);
+
+    try {
+      const headers = {
+        'Authorization': `Bearer ${accessToken}`
+      };
+  
+      // Await the response of the fetch call, including the headers in the options
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: headers 
+      });
+  
+      // Check if the request was successful
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Await the response to be parsed as JSON
+      const data = await response.json();
+      // Do something with the data
+      console.log(data);
+      
+      const processedSongs = formatSongs(data);
+      setSearchResults(processedSongs);
+      
+    } catch (error) {
+      // Log any errors to the console
+      console.error('There was a problem with your fetch operation:', error);
+    }
   }
+
+  //
+  function formatSongs(json){
+    if (json.tracks && json.tracks.items){
+        const items = json.tracks.items;
+        const songs = items.map((item) =>{
+            return {
+                id: item.id,
+                songName: item.name,
+                artist: item.artists[0].name,
+                album: item.album.name,
+                uri: item.uri
+            };
+        });
+
+        return songs;
+
+    } else {
+        return [];
+    }
+
+}
 
   //State and state setter that contains the search result as a list of songs
   const [searchResults, setSearchResults] = useState([]);
@@ -87,13 +139,10 @@ function App() {
     setPlaylistName(e.target.value);
   }
 
-  console.log(accessToken);
-
   if(auth === false){
     return (
       <div className='App'>
         <AuthButton onClick={handleAuth} />
-        <p>{accessToken}</p>
       </div>
     );
   }
@@ -104,11 +153,6 @@ function App() {
               search={search}
               onSearch={handleSearchInput}
               onSubmit={handleSearchSubmit}
-          />
-          
-          <SearchResults 
-              url={url}
-              onSearchResults={handleSearchResults}
           />
 
           <div className='lists'>

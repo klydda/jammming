@@ -15,6 +15,7 @@ function Tracklist({songList, onSelectSong}){
                             songName={element.songName}
                             artist={element.artist}
                             album={element.album}
+                            uri={element.uri}
                             onSelectSong={onSelectSong}
                         />
                     );
