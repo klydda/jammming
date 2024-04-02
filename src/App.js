@@ -80,8 +80,8 @@ function App() {
 
     if(playlistName){
       const user = await spotifyUser(accessToken);
-      newPlayList(user.id, playlistName, accessToken);
-      
+      newPlayList(user.id, playlistName, accessToken, selectedSongs);
+
     } else {
       alert('Please enter a name for your playlist before saving');
     }
