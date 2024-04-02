@@ -7,6 +7,7 @@ import AuthButton from './Components/AuthButton/AuthButton';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
 import spotifySearch from './Components/spotifyAPI/spotifySearch';
 import spotifyUser from './Components/spotifyAPI/spotifyUser';
+import newPlayList from './Components/spotifyAPI/spotifySavePlaylist';
 
 //API info
 let accessToken = '';
@@ -76,9 +77,14 @@ function App() {
 
   async function handleSave(e){
     e.preventDefault();
-    const user = await spotifyUser(accessToken);
-    const id = user.id;
-    
+
+    if(playlistName){
+      const user = await spotifyUser(accessToken);
+      newPlayList(user.id, playlistName, accessToken);
+      
+    } else {
+      alert('Please enter a name for your playlist before saving');
+    }
   }
 
   if(auth === false){
