@@ -109,28 +109,22 @@ function App() {
     setSearchResults(songs);
   }
 
-  //State and state setters. First contains array of song names, second of song objects.
-  const [selectedSongIds, setSelectedSongIds] = useState([]);
+  //SELECTED SONGS: recieves e.target.id, finds equivalent song in searchResults, adds it to selectedSongs state
   const [selectedSongs, setSelectedSongs] = useState([]);
   function handleSetSelectedSong(e){
-    const songId = e.target.id;
-    setSelectedSongIds((prev) => [...prev, songId]);
+    const id = e.target.id;
+    const song = searchResults.find((song) => song.id === id);
+
+    if(song){
+      setSelectedSongs((prev) => [...prev, song]);
+    }
   }
 
-  function handleRemoveSelectedSong(e){
-    const songToRemove = e.target.id;
-    const filteredIdList = selectedSongIds.filter((song) => song !== songToRemove);
-    setSelectedSongIds(filteredIdList);
-  }
-
-  //Updates selectedSongs based on change in selectedSongIds
-  useEffect(() => {
-    const filteredSongs = searchResults.filter((song) => {
-      return selectedSongIds.includes(song.id);
-    });
-
-    setSelectedSongs(filteredSongs);
-  }, [selectedSongIds]);
+  // function handleRemoveSelectedSong(e){
+  //   const songToRemove = e.target.id;
+  //   const filteredIdList = selectedSongIds.filter((song) => song !== songToRemove);
+  //   setSelectedSongIds(filteredIdList);
+  // }
 
   //State and event handler managing playlist name
   const [playlistName, setPlaylistName] = useState('');
@@ -164,7 +158,7 @@ function App() {
           <Playlist 
             selectedSongs={selectedSongs}
             playlistName={playlistName}
-            onRemoveSong={handleRemoveSelectedSong}
+            //onRemoveSong={handleRemoveSelectedSong}
             onNameChange={handlePlaylistNameInput}
           />
           </div>
