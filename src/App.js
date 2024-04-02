@@ -37,6 +37,7 @@ function App() {
   }
 
   //State and event handler for search bar submit
+  const [searchResultJSON, setSearchResultJSON] = useState({});
   function handleSearchSubmit(e) {
       e.preventDefault();
       fetchSongs();
@@ -72,6 +73,7 @@ function App() {
       const data = await response.json();
       // Do something with the data
       console.log(data);
+      setSearchResultJSON(data);
     } catch (error) {
       // Log any errors to the console
       console.error('There was a problem with your fetch operation:', error);
@@ -131,7 +133,7 @@ function App() {
           />
           
           <SearchResults 
-              accessToken={accessToken}
+              json={searchResultJSON}
               onSearchResults={handleSearchResults}
           />
 
