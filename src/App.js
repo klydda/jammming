@@ -86,13 +86,21 @@ function App() {
     if (json.tracks && json.tracks.items){
         const items = json.tracks.items;
         const songs = items.map((item) =>{
-            return {
-                id: item.id,
-                songName: item.name,
-                artist: item.artists[0].name,
-                album: item.album.name,
-                uri: item.uri
-            };
+          let artists = '';
+          
+          item.artists.forEach((artist, index) => {
+            return artists = artists += ', ' + artist.name;
+          });
+
+          artists = artists.slice(2, artists.length); //Removes first to characters, which are always ', '.
+
+          return {
+              id: item.id,
+              songName: item.name,
+              artist: artists,
+              album: item.album.name,
+              uri: item.uri
+          };
         });
 
         return songs;
