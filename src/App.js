@@ -7,6 +7,7 @@ import Playlist from './Components/Playlist/Playlist';
 import AuthButton from './Components/AuthButton/AuthButton';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
 
+//API info
 let accessToken = '';
 
 function App() {
@@ -46,9 +47,14 @@ function App() {
 
   //Constructs correct URL based on search input
   function constructUrl() {
-      const baseUrl = 'part1'
-      const searchQuery = search;
-      return `${baseUrl}${searchQuery}`;
+    const searchBaseURL = 'https://api.spotify.com/v1/search';
+    const queryBase = '?q=';
+    const generalSearch = search;
+    let request = `${searchBaseURL}${queryBase}${generalSearch}`;
+
+    console.log(request);
+
+    return request;
   }
 
   //State and state setter that contains the search result as a list of songs
@@ -87,13 +93,10 @@ function App() {
     setPlaylistName(e.target.value);
   }
 
-  console.log(accessToken);
-
   if(auth === false){
     return (
       <div className='App'>
         <AuthButton onClick={handleAuth} />
-        <p>{accessToken}</p>
       </div>
     );
   }
