@@ -90,12 +90,13 @@ function App() {
                 id: item.id,
                 songName: item.name,
                 artist: item.artists[0].name,
-                album: item.album.name
+                album: item.album.name,
+                uri: item.uri
             };
         });
 
         return songs;
-        
+
     } else {
         return [];
     }
