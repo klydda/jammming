@@ -120,11 +120,12 @@ function App() {
     }
   }
 
-  // function handleRemoveSelectedSong(e){
-  //   const songToRemove = e.target.id;
-  //   const filteredIdList = selectedSongIds.filter((song) => song !== songToRemove);
-  //   setSelectedSongIds(filteredIdList);
-  // }
+  function handleRemoveSelectedSong(e){
+    const songToRemove = e.target.id;
+
+    const filtered = selectedSongs.filter((song) => song.id !== songToRemove);
+    setSelectedSongs(filtered);
+  }
 
   //State and event handler managing playlist name
   const [playlistName, setPlaylistName] = useState('');
@@ -158,7 +159,7 @@ function App() {
           <Playlist 
             selectedSongs={selectedSongs}
             playlistName={playlistName}
-            //onRemoveSong={handleRemoveSelectedSong}
+            onRemoveSong={handleRemoveSelectedSong}
             onNameChange={handlePlaylistNameInput}
           />
           </div>
