@@ -37,24 +37,45 @@ function App() {
   }
 
   //State and event handler for search bar submit
-  const [url, setUrl] = useState('');
   function handleSearchSubmit(e) {
       e.preventDefault();
-      accessToken = extractToken();
-      const url = constructUrl();
-      setUrl(url);
+      fetchSongs();
   }
 
-  //Constructs correct URL based on search input
-  function constructUrl() {
+  async function fetchSongs() {
     const searchBaseURL = 'https://api.spotify.com/v1/search';
     const queryBase = '?q=';
-    const generalSearch = search;
-    let request = `${searchBaseURL}${queryBase}${generalSearch}`;
+    const generalSearch = encodeURIComponent(search);
+    const type = 'type=track';
+    const queryString = `${queryBase}${generalSearch}&${type}`;
+    const encodedString = encodeURIComponent(queryString);
+    const url = searchBaseURL + queryString;
 
-    console.log(request);
+    console.log(url);
 
-    return request;
+    try {
+      const headers = {
+        'Authorization': `Bearer ${accessToken}`
+      };
+  
+      // Await the response of the fetch call, including the headers in the options
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: headers 
+      });
+  
+      // Check if the request was successful
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Await the response to be parsed as JSON
+      const data = await response.json();
+      // Do something with the data
+      console.log(data);
+    } catch (error) {
+      // Log any errors to the console
+      console.error('There was a problem with your fetch operation:', error);
+    }
   }
 
   //State and state setter that contains the search result as a list of songs
@@ -110,7 +131,7 @@ function App() {
           />
           
           <SearchResults 
-              url={url}
+              accessToken={accessToken}
               onSearchResults={handleSearchResults}
           />
 

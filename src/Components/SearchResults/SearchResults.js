@@ -31,6 +31,8 @@ const result = {
 function SearchResults({url, onSearchResults}){
 
     // Function to make the API call here
+    
+
 
     // Function to format result here
     const songs = result.songs;
