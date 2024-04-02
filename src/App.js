@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SearchBar from './Components/SearchBar/SearchBar';
-import SearchResults from './Components/SearchResults/SearchResults';
 import Tracklist from './Components/Tracklist/TrackList';
 import Playlist from './Components/Playlist/Playlist';
 import AuthButton from './Components/AuthButton/AuthButton';
@@ -37,7 +36,6 @@ function App() {
   }
 
   //State and event handler for search bar submit
-  const [searchResultJSON, setSearchResultJSON] = useState({});
   function handleSearchSubmit(e) {
       e.preventDefault();
       fetchSongs();
@@ -73,12 +71,36 @@ function App() {
       const data = await response.json();
       // Do something with the data
       console.log(data);
-      setSearchResultJSON(data);
+      
+      const processedSongs = formatSongs(data);
+      setSearchResults(processedSongs);
+      
     } catch (error) {
       // Log any errors to the console
       console.error('There was a problem with your fetch operation:', error);
     }
   }
+
+  //
+  function formatSongs(json){
+    if (json.tracks && json.tracks.items){
+        const items = json.tracks.items;
+        const songs = items.map((item) =>{
+            return {
+                id: item.id,
+                songName: item.name,
+                artist: item.artists[0].name,
+                album: item.album.name
+            };
+        });
+
+        return songs;
+        
+    } else {
+        return [];
+    }
+
+}
 
   //State and state setter that contains the search result as a list of songs
   const [searchResults, setSearchResults] = useState([]);
@@ -130,11 +152,6 @@ function App() {
               search={search}
               onSearch={handleSearchInput}
               onSubmit={handleSearchSubmit}
-          />
-          
-          <SearchResults 
-              json={searchResultJSON}
-              onSearchResults={handleSearchResults}
           />
 
           <div className='lists'>
