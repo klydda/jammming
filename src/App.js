@@ -6,6 +6,7 @@ import Playlist from './Components/Playlist/Playlist';
 import AuthButton from './Components/AuthButton/AuthButton';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
 import spotifySearch from './Components/spotifyAPI/spotifySearch';
+import spotifyUser from './Components/spotifyAPI/spotifyUser';
 
 //API info
 let accessToken = '';
@@ -73,6 +74,13 @@ function App() {
     setPlaylistName(e.target.value);
   }
 
+  async function handleSave(e){
+    e.preventDefault();
+    const user = await spotifyUser(accessToken);
+    const id = user.id;
+    
+  }
+
   if(auth === false){
     return (
       <div className='App'>
@@ -100,6 +108,7 @@ function App() {
             playlistName={playlistName}
             onRemoveSong={handleRemoveSelectedSong}
             onNameChange={handlePlaylistNameInput}
+            onSave={handleSave}
           />
           </div>
 
