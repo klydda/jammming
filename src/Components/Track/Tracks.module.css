@@ -1,12 +1,20 @@
+span {
+    color: #979797;
+}
+
 .trackWrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 10%);
+    background-color: transparent;
     margin: 5px 0px;
     padding: 10px 10px;
     height: 50px;
+}
+
+.trackWrapper:hover {
+    background-color: #242424;
 }
 
 .trackInfo {
@@ -15,6 +23,10 @@
 
 .buttonWrapper {
 
+}
+
+.songName {
+    color: #EBEBEB;
 }
 
 .infoSpan {
@@ -30,12 +42,13 @@
     background-color: transparent;
     padding: 40% 20px;
     border-radius: 200px;
+    color: #979797;
 }
 
 .button:hover {
-    background-color: rgba(0, 0, 0, 5%);
+
 }
 
 .button:active {
-    background-color: rgba(0, 0, 0, 7%);
+    background-color: #191919;
 }

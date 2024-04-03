@@ -3,9 +3,13 @@
   padding: 0;
 }
 
+html {
+  background-color: black;
+}
+
 .App {
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -15,6 +19,7 @@
 .lists {
   display: flex;
   flex-direction: row;
+  margin-top: 20px;
 }
 
 .App-logo {
