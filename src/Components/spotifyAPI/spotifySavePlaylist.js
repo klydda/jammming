@@ -87,8 +87,6 @@ async function createPlaylist(userId, name, accessToken) {
       //return await response.json();
       const responseJson = await response.json();
 
-      console.log(responseJson);
-
     } catch (error) {
       console.error('Error:', error);
       // Handle errors or rejections here

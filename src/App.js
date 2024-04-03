@@ -25,7 +25,6 @@ function App() {
     const token = extractToken();
 
     if(token){
-      console.log('Token found: ' + token);
       accessToken = token;
       setAuth(true);
     }

@@ -17,7 +17,6 @@ async function spotifyUser(accessToken) {
       // Await the response to be parsed as JSON
       const data = await response.json();
       // Do something with the data
-      console.log(data);
       return data;
     } catch (error) {
       // Log any errors to the console

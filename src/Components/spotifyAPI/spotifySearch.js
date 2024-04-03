@@ -7,8 +7,6 @@ async function spotifySearch(accessToken, search, setSearchResults) {
     const encodedString = encodeURIComponent(queryString);
     const url = searchBaseURL + queryString;
 
-    console.log(url);
-
     try {
       const headers = {
         'Authorization': `Bearer ${accessToken}`
@@ -26,9 +24,8 @@ async function spotifySearch(accessToken, search, setSearchResults) {
       }
       // Await the response to be parsed as JSON
       const data = await response.json();
-      // Do something with the data
-      console.log(data);
       
+      // Do something with the data
       const processedSongs = formatSongs(data);
       setSearchResults(processedSongs);
       
