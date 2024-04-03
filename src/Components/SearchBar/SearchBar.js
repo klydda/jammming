@@ -5,7 +5,7 @@ function SearchBar({search, onSearch, onSubmit}) {
     return (
         <>
             <form autoComplete="off" onSubmit={onSubmit}>
-                <label for="search">Search</label>
+                <label htmlFor="search">Search</label>
                 <input 
                     id="search"
                     type="text"
