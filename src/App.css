@@ -13,13 +13,15 @@ html {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-color: black;
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 60%, rgba(9,31,121,1) 80%, rgba(0,149,255,1) 100%);
 }
 
 .lists {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  background-color: rgba(36, 36, 36, 70%);
 }
 
 .App-logo {

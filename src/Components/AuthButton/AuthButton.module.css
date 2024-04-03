@@ -66,7 +66,8 @@
     height: 500px;
     width: 500px;;
     border-radius: 500px;
-    background-color: #1CD760;
+    background: rgb(0,149,255);
+    background: radial-gradient(circle, rgba(0,149,255,1) 0%, rgba(9,31,121,1) 100%);
     filter: blur(150px);
 }
 
