@@ -1,14 +1,54 @@
 .authWrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: black;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 .button {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50px;
-    width: 200px;
+    width: 320px;
+    background-color: #1CD760;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
 }
+
+.logo {
+    max-height: 50%;
+    width: auto;
+    margin-right: 10px;
+}
+
+.button:hover {
+    width: 330px;
+    height: 55px;
+    background-color: #1DDF63;
+}
+
+.button:active {
+    background-color: #139C46;
+}
+
+.spacerDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    margin-top: 20px;
+}
+
+.jammming {
+    font-size: 80px;
+    color: white;
+}
+
