@@ -90,9 +90,13 @@ function App() {
   async function handleSave(e){
     e.preventDefault();
 
-    const user = await spotifyUser(accessToken);
-    newPlayList(user.id, playlistName, accessToken, selectedSongs);
-    setSaved(true);
+    if(!playlistName){
+      alert('Please enter a playlist name before saving.');
+    } else {
+      const user = await spotifyUser(accessToken);
+      newPlayList(user.id, playlistName, accessToken, selectedSongs);
+      setSaved(true);
+    }
   }
 
 

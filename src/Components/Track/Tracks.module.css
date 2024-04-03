@@ -43,6 +43,7 @@ span {
     padding: 40% 20px;
     border-radius: 200px;
     color: #979797;
+    font-weight: 600;
 }
 
 .button:hover {

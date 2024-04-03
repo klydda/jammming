@@ -9,16 +9,16 @@ function Track({ id, songName, artist, album, onSelectSong, onRemoveSong }) {
             <div className={styles.trackWrapper} id={`song${id}`}>
                 <div className={styles.trackInfo} >
                     <h4 className={styles.songName}>{songName}</h4>
-                    <span className={styles.infoSpan}>👤 {artist}</span>
+                    <span className={styles.infoSpan}>{artist}</span>
                     <span className={styles.divider}>|</span>
-                    <span className={styles.infoSpan}>💿 {album}</span>
+                    <span className={styles.infoSpan}>{album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>
                     <button 
                         className={styles.button}
                         id={id}
-                        onClick={onRemoveSong}>X</button>
+                        onClick={onRemoveSong}>x</button>
                 </div>
 
             </div>
@@ -29,9 +29,9 @@ function Track({ id, songName, artist, album, onSelectSong, onRemoveSong }) {
             <div className={styles.trackWrapper} id={`song${id}`}>
                 <div className={styles.trackInfo} >
                     <h4 className={styles.songName}>{songName}</h4>
-                    <span className={styles.infoSpan}>👤 {artist}</span>
+                    <span className={styles.infoSpan}>{artist}</span>
                     <span className={styles.divider}>|</span>
-                    <span>💿 {album}</span>
+                    <span>{album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>
