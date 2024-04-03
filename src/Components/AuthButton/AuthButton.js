@@ -6,6 +6,7 @@ function AuthButton({onClick}){
     return (
         <div className={styles.authWrapper}>
             <h1 className={styles.jammming}>Jammming</h1>
+            <div className={styles.colorBlob}></div>
 
             <div className={styles.spacerDiv}>
                 <button 
