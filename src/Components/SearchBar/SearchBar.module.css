@@ -15,6 +15,10 @@
     text-indent: 10px;
 }
 
+.input:focus{
+    outline: none;
+}
+
 .button {
     width: 60px;
     height: 60px;
