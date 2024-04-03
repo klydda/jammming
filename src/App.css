@@ -5,10 +5,11 @@
 
 .App {
   display: flex;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  background-color: black;
 }
 
 .lists {
@@ -49,4 +50,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.jammming {
+  position: relative;
+  z-index: 10;
+  margin-top: 50px;
+  font-size: 80px;
+  color: white;
 }

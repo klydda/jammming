@@ -95,30 +95,31 @@ function App() {
   }
 
   return (
-      <div className="App">
-          <SearchBar
-              search={search}
-              onSearch={handleSearchInput}
-              onSubmit={handleSearchSubmit}
-          />
+    <div className="App">
+      <h1 className='jammming'>Jammming</h1>
+        <SearchBar
+            search={search}
+            onSearch={handleSearchInput}
+            onSubmit={handleSearchSubmit}
+        />
 
-          <div className='lists'>
-          <Tracklist 
-            songList={searchResults}
-            onSelectSong={handleSetSelectedSong}
-          />
+        <div className='lists'>
+        <Tracklist 
+          songList={searchResults}
+          onSelectSong={handleSetSelectedSong}
+        />
 
-          <Playlist 
-            selectedSongs={selectedSongs}
-            playlistName={playlistName}
-            onRemoveSong={handleRemoveSelectedSong}
-            onNameChange={handlePlaylistNameInput}
-            onSave={handleSave}
-          />
-          </div>
+        <Playlist 
+          selectedSongs={selectedSongs}
+          playlistName={playlistName}
+          onRemoveSong={handleRemoveSelectedSong}
+          onNameChange={handlePlaylistNameInput}
+          onSave={handleSave}
+        />
+        </div>
 
 
-      </div>
+    </div>
       
   );
 }
