@@ -11,7 +11,7 @@ function Track({ id, songName, artist, album, onSelectSong, onRemoveSong }) {
                     <h4 className={styles.songName}>{songName}</h4>
                     <span className={styles.infoSpan}>👤 {artist}</span>
                     <span className={styles.divider}>|</span>
-                    <span>💿 {album}</span>
+                    <span className={styles.infoSpan}>💿 {album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>

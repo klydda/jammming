@@ -1,0 +1,29 @@
+.wrapper {
+    width: 800px;
+    background-color: #1CD760;
+    margin-bottom: 5px;
+
+    /* Adjust the animation to include fade-out after 3 seconds */
+    animation: scaleUpAndFadeOut 5s ease forwards; /* Notice the total duration now */
+}
+
+@keyframes scaleUpAndFadeOut {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    /* 14% (0.5s of 3.5s) scale up and appear */
+    3% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    /* Stay visible for the next 3 seconds (approx 86% of the animation) */
+    20% {
+        opacity: 1;
+    }
+    /* Last 14% (0.5s of 3.5s) to fade out */
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}

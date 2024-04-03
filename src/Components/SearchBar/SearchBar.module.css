@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 300px;
+    height: 60px;
+    background-color: #242424;
+    color: #757575;
+    border-radius: 20px 0 0 20px;
+    border: none;
+    font-size: 30px;
+    text-indent: 10px;
+}
+
+.button {
+    width: 60px;
+    height: 60px;
+    background-color: #1CD760;
+    border-radius: 0 10px 10px 0;
+    border: none;
+}
+
+.button:hover {
+    background-color: #1DDF63;
+}
+
+.button:active {
+    background-color: #139C46;
+}
+
+.icon {
+    max-height: 50%;
+    width: auto;
+}

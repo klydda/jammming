@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
+import styles from './SearchBar.module.css';
+import searchIcon from './search.png';
 
 function SearchBar({search, onSearch, onSubmit}) {
 
     return (
-        <>
-            <form autoComplete="off" onSubmit={onSubmit}>
-                <label htmlFor="search">Search</label>
+        <div className={styles.wrapper}>
+            <form 
+                id="search" 
+                autoComplete="off" 
+                onSubmit={onSubmit}>
                 <input 
                     id="search"
+                    className={styles.input}
                     type="text"
+                    placeholder='Search'
                     value={search}
                     onChange={onSearch}
                 />
-                <button>🔍</button>
             </form>
-        </>
+
+            <div>
+                <button 
+                    form="search"
+                    className={styles.button}>
+                        <img 
+                            src={searchIcon}
+                            className={styles.icon}
+                        />
+                    </button>
+            </div>
+        </div>
     );
 }
 

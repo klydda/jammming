@@ -1,10 +1,25 @@
 import React from 'react';
 import styles from './AuthButton.module.css';
+import spotifyLogo from './spotify-logo.png';
 
 function AuthButton({onClick}){
     return (
         <div className={styles.authWrapper}>
-            <button className={styles.button} onClick={onClick}>Connect your Spotify Account</button>
+            <h1 className={styles.jammming}>Jammming</h1>
+            <div className={styles.colorBlob}></div>
+
+            <div className={styles.spacerDiv}>
+                <button 
+                    className={styles.button} 
+                    onClick={onClick}>
+                        <img 
+                        src={spotifyLogo}
+                        className={styles.logo} 
+                        alt='spotify logo'/>
+
+                    Connect your Spotify Account
+                </button>
+            </div>
         </div>
     );
 }
