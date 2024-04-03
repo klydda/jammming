@@ -4,25 +4,48 @@ import styles from './Tracklist.module.css';
 
 function Tracklist({songList, onSelectSong}){
 
-    return (
-        <div className={styles.songListWrapper}>
-            <div className={styles.searchResultsWrapper}>
-                {songList.map((element, index) => {
-                    return(
-                        <Track
-                            key={`song${index}`}
-                            id={element.id}
-                            songName={element.songName}
-                            artist={element.artist}
-                            album={element.album}
-                            uri={element.uri}
-                            onSelectSong={onSelectSong}
-                        />
-                    );
-                })}
+    if (!songList[0]){
+        return (
+            <div className={styles.songListWrapperOff}>
+                <div className={styles.searchResultsWrapper}>
+                    {songList.map((element, index) => {
+                        return(
+                            <Track
+                                key={`song${index}`}
+                                id={element.id}
+                                songName={element.songName}
+                                artist={element.artist}
+                                album={element.album}
+                                uri={element.uri}
+                                onSelectSong={onSelectSong}
+                            />
+                        );
+                    })}
+                </div>
             </div>
-        </div>
-    );
+        ); 
+        
+    } else {
+        return (
+            <div className={styles.songListWrapper}>
+                <div className={styles.searchResultsWrapper}>
+                    {songList.map((element, index) => {
+                        return(
+                            <Track
+                                key={`song${index}`}
+                                id={element.id}
+                                songName={element.songName}
+                                artist={element.artist}
+                                album={element.album}
+                                uri={element.uri}
+                                onSelectSong={onSelectSong}
+                            />
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
 
 }
 
