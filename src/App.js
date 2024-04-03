@@ -98,7 +98,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='jammming'>Jammming</h1>
+      <div className={`container ${searchResults.length > 0 ? 'container-standard' : 'container-initial'}`}>
+        <h1 className='jammming'>Jammming</h1>
         <SearchBar
             search={search}
             onSearch={handleSearchInput}
@@ -124,6 +125,8 @@ function App() {
           onSave={handleSave}
         />
         </div>
+      </div>
+
 
 
     </div>

@@ -15,6 +15,24 @@ html {
   align-items: center;
   background: rgb(0,0,0);
   background: linear-gradient(0deg, rgba(0,0,0,1) 60%, rgba(9,31,121,1) 80%, rgba(0,149,255,1) 100%);
+  transition: top 0.5s ease;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: top 0.5s ease;
+}
+
+.container-initial {
+  position: relative;
+  top: 35%;
+}
+
+.container-standard {
+  position: relative;
+  top: 0%;
 }
 
 .lists {
