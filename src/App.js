@@ -4,6 +4,7 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import Tracklist from './Components/Tracklist/TrackList';
 import Playlist from './Components/Playlist/Playlist';
 import AuthButton from './Components/AuthButton/AuthButton';
+import ConfirmSave from './Components/ConfirmSave/ConfirmSave';
 import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAuth';
 import spotifySearch from './Components/spotifyAPI/spotifySearch';
 import spotifyUser from './Components/spotifyAPI/spotifyUser';
@@ -54,6 +55,7 @@ function App() {
   function handleSetSelectedSong(e){
     const id = e.target.id;
     const song = searchResults.find((song) => song.id === id);
+    setSaved(false);
 
     if(song){
       setSelectedSongs((prev) => [...prev, song]);
@@ -62,6 +64,7 @@ function App() {
 
   function handleRemoveSelectedSong(e){
     const songToRemove = e.target.id;
+    setSaved(false);
 
     const filtered = selectedSongs.filter((song) => song.id !== songToRemove);
     setSelectedSongs(filtered);
@@ -74,17 +77,16 @@ function App() {
     setPlaylistName(e.target.value);
   }
 
+  const [saved, setSaved] = useState(false);
   async function handleSave(e){
     e.preventDefault();
 
-    if(playlistName){
-      const user = await spotifyUser(accessToken);
-      newPlayList(user.id, playlistName, accessToken, selectedSongs);
-
-    } else {
-      alert('Please enter a name for your playlist before saving');
-    }
+    const user = await spotifyUser(accessToken);
+    newPlayList(user.id, playlistName, accessToken, selectedSongs);
+    setSaved(true);
   }
+
+
 
   if(auth === false){
     return (
@@ -101,6 +103,11 @@ function App() {
             search={search}
             onSearch={handleSearchInput}
             onSubmit={handleSearchSubmit}
+        />
+
+        <ConfirmSave 
+          saved={saved}
+          playlistName={playlistName}
         />
 
         <div className='lists'>

@@ -1,0 +1,25 @@
+/* ConfirmSave.module.css */
+.wrapper {
+    width: 800px;
+    background-color: #1CD760;
+    border-radius: 5px;
+    /* Center the div */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Add animation */
+    animation: scaleUp 0.2s ease forwards;
+}
+
+/* Keyframes for the animation */
+@keyframes scaleUp {
+    from {
+        transform: scale(0); /* Start from the center */
+        opacity: 0; /* Start from fully transparent */
+    }
+    to {
+        transform: scale(1); /* Scale to original size */
+        opacity: 1; /* Fully visible */
+    }
+}

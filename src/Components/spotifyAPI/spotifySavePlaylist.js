@@ -5,7 +5,7 @@ async function newPlayList(userId, name, accessToken, songs){
     const uris = extractUris(songs);
     console.log('Uris in newPlaylist: ' + uris);
     const playlistId = await createPlaylist(userId, name, accessToken);
-    addSongs(uris, accessToken, playlistId);
+    await addSongs(uris, accessToken, playlistId);
 }
 
 function extractUris(songs){
