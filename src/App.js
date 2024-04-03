@@ -52,13 +52,22 @@ function App() {
 
   //SELECTED SONGS: recieves e.target.id, finds equivalent song in searchResults, adds it to selectedSongs state
   const [selectedSongs, setSelectedSongs] = useState([]);
+  const [playlistAnimated, setPlaylistAnimated] = useState(false);
+
   function handleSetSelectedSong(e){
     const id = e.target.id;
     const song = searchResults.find((song) => song.id === id);
     setSaved(false);
 
     if(song){
-      setSelectedSongs((prev) => [...prev, song]);
+      setSelectedSongs((prev) => {
+
+        if(prev.length === 0 && !playlistAnimated){
+          setPlaylistAnimated(true);
+        }
+
+        return [...prev, song]
+      });
     }
   }
 
@@ -111,10 +120,11 @@ function App() {
           playlistName={playlistName}
         />
 
-        <div className='lists'>
+      <div className='lists'>
         <Tracklist 
           songList={searchResults}
           onSelectSong={handleSetSelectedSong}
+          playlistAnimated={playlistAnimated}
         />
 
         <Playlist 
@@ -123,6 +133,7 @@ function App() {
           onRemoveSong={handleRemoveSelectedSong}
           onNameChange={handlePlaylistNameInput}
           onSave={handleSave}
+          playlistAnimated={playlistAnimated}
         />
         </div>
       </div>

@@ -2,7 +2,9 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave}){
+function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave, playlistAnimated}){
+
+    const animationClass = playlistAnimated && selectedSongs.length > 0 ? styles.animatePlaylist : '';
 
     if(!selectedSongs[0]){
         return (
@@ -50,7 +52,7 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSa
         );
     } else if (selectedSongs && !playlistName) {
         return (
-            <div className={styles.songListWrapper}>
+            <div className={`${styles.songListWrapper} ${animationClass}`}>
                 <div className={styles.formContainer}>
                     <form
                         id='playlistName'

@@ -2,7 +2,8 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
-function Tracklist({songList, onSelectSong}){
+function Tracklist({songList, onSelectSong, playlistAnimated}){
+    console.log(`TrackList: ${playlistAnimated}`)
 
     if (!songList[0]){
         return (
@@ -27,7 +28,7 @@ function Tracklist({songList, onSelectSong}){
         
     } else {
         return (
-            <div className={styles.songListWrapper}>
+            <div className={`${styles.songListWrapper} ${playlistAnimated ? styles.animateSlideOut : ''}`}>
                 <div className={styles.searchResultsWrapper}>
                     {songList.map((element, index) => {
                         return(
