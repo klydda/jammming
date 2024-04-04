@@ -21,6 +21,14 @@ span {
     text-align: left;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
+span.clickable:hover {
+    text-decoration: underline;
+}
+
 .buttonWrapper {
 
 }

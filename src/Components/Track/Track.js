@@ -16,6 +16,7 @@ function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveS
                                     <span
                                     id={artist.id}
                                     key={artist.id}
+                                    className={styles.clickable}
                                     onClick={onClickArtist}>
                                         {index !== artists.length-1 ? `${artist.name}, ` : artist.name}
                                     </span>
@@ -26,14 +27,14 @@ function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveS
 
                     <span className={styles.divider}>|</span>
                     <span 
-                        className={styles.infoSpan}
+                        className={`${styles.infoSpan} ${styles.clickable}`}
                         id={albumUri}
                         onClick={onClickAlbum}>{album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>
                     <button 
-                        className={styles.button}
+                        className={`${styles.button} ${styles.clickable}`}
                         id={id}
                         onClick={onRemoveSong}>x</button>
                 </div>
@@ -53,6 +54,7 @@ function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveS
                                     <span
                                     id={artist.id}
                                     key={artist.id}
+                                    className={styles.clickable}
                                     onClick={onClickArtist}>
                                         {index !== artists.length-1 ? `${artist.name}, ` : artist.name}
                                     </span>
@@ -64,14 +66,14 @@ function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveS
 
                     <span className={styles.divider}>|</span>
                     <span 
-                        className={styles.infoSpan}
+                        className={`${styles.infoSpan} ${styles.clickable}`}
                         id={albumUri}
                         onClick={onClickAlbum}>{album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>
                     <button 
-                        className={styles.button}
+                        className={`${styles.button} ${styles.clickable}`}
                         id={id}
                         onClick={onSelectSong}>+</button>
                 </div>
