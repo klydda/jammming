@@ -51,6 +51,11 @@ function App() {
     spotifyAlbum(accessToken, albumUri, setSearchResults);
   }
 
+  //Handle click on artist
+  function handleArtistClick(e){
+
+  }
+
   //State and state setter that contains the search result as a list of songs
   const [searchResults, setSearchResults] = useState([]);
   function handleSearchResults(songs){
@@ -145,6 +150,7 @@ function App() {
           onRemoveSong={handleRemoveSelectedSong}
           onNameChange={handlePlaylistNameInput}
           onSave={handleSave}
+          onClickAlbum={handleAlbumClick}
           playlistAnimated={playlistAnimated}
         />
         </div>

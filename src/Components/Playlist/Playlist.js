@@ -2,7 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave, playlistAnimated}){
+function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave, onClickAlbum, playlistAnimated}){
 
     const animationClass = playlistAnimated && selectedSongs.length > 0 ? styles.animatePlaylist : '';
 
@@ -34,9 +34,11 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSa
                                 songName={element.songName}
                                 artist={element.artist}
                                 album={element.album}
+                                albumUri={element.albumUri}
                                 uri={element.uri}
                                 onSelectSong="Playlist"
                                 onRemoveSong={onRemoveSong}
+                                onClickAlbum={onClickAlbum}
                             />
                         );
                     })}
@@ -76,11 +78,13 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSa
                                 key={`song${index}`}
                                 id={element.id}
                                 songName={element.songName}
-                                artist={element.artist}
+                                artists={element.artists}
                                 album={element.album}
+                                albumUri={element.albumUri}
                                 uri={element.uri}
                                 onSelectSong="Playlist"
                                 onRemoveSong={onRemoveSong}
+                                onClickAlbum={onClickAlbum}
                             />
                         );
                     })}
@@ -122,7 +126,7 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSa
                                 key={`song${index}`}
                                 id={element.id}
                                 songName={element.songName}
-                                artist={element.artist}
+                                artists={element.artists}
                                 album={element.album}
                                 uri={element.uri}
                                 onSelectSong="Playlist"

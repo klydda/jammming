@@ -3,7 +3,6 @@ import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
 function Tracklist({songList, onSelectSong, onClickAlbum, playlistAnimated}){
-    console.log(`TrackList: ${playlistAnimated}`)
 
     if (!songList[0]){
         return (

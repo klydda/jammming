@@ -4,8 +4,6 @@ async function spotifyAlbum(accessToken, albumUri, setSearchResults) {
     const id = albumUri;
     const url = searchBaseURL + id;
 
-    console.log('spotifyAlbum was called');
-
     try {
       const headers = {
         'Authorization': `Bearer ${accessToken}`
@@ -25,7 +23,6 @@ async function spotifyAlbum(accessToken, albumUri, setSearchResults) {
       const data = await response.json();
       
       // Do something with the data
-      console.log(data);
       const processedSongs = formatSongs(data);
       setSearchResults(processedSongs);
       
