@@ -9,6 +9,7 @@ import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAut
 import spotifySearch from './Components/spotifyAPI/spotifySearch';
 import spotifyUser from './Components/spotifyAPI/spotifyUser';
 import newPlayList from './Components/spotifyAPI/spotifySavePlaylist';
+import spotifyAlbum from './Components/spotifyAPI/spotifyAlbum';
 
 //API info
 let accessToken = '';
@@ -42,6 +43,12 @@ function App() {
   function handleSearchSubmit(e) {
       e.preventDefault();
       spotifySearch(accessToken, search, setSearchResults);
+  }
+
+  //Handle click on album
+  function handleAlbumClick(e){
+    const albumUri = e.target.id;
+    spotifyAlbum(accessToken, albumUri, setSearchResults);
   }
 
   //State and state setter that contains the search result as a list of songs
@@ -128,6 +135,7 @@ function App() {
         <Tracklist 
           songList={searchResults}
           onSelectSong={handleSetSelectedSong}
+          onClickAlbum={handleAlbumClick}
           playlistAnimated={playlistAnimated}
         />
 

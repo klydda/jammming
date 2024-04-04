@@ -1,11 +1,10 @@
-async function spotifySearch(accessToken, search, setSearchResults) {
-    const searchBaseURL = 'https://api.spotify.com/v1/search';
-    const queryBase = '?q=';
-    const generalSearch = encodeURIComponent(search);
-    const type = 'type=track';
-    const queryString = `${queryBase}${generalSearch}&${type}`;
-    const encodedString = encodeURIComponent(queryString);
-    const url = searchBaseURL + queryString;
+
+async function spotifyAlbum(accessToken, albumUri, setSearchResults) {
+    const searchBaseURL = 'https://api.spotify.com/v1/albums/';
+    const id = albumUri;
+    const url = searchBaseURL + id;
+
+    console.log('spotifyAlbum was called');
 
     try {
       const headers = {
@@ -26,6 +25,7 @@ async function spotifySearch(accessToken, search, setSearchResults) {
       const data = await response.json();
       
       // Do something with the data
+      console.log(data);
       const processedSongs = formatSongs(data);
       setSearchResults(processedSongs);
       
@@ -40,13 +40,6 @@ async function spotifySearch(accessToken, search, setSearchResults) {
         const items = json.tracks.items;
         const songs = items.map((item) =>{
           let artists = '';
-          const rawAlbumUri = item.album.uri;
-          const index = rawAlbumUri.lastIndexOf(':') +1;
-          const albumUri = rawAlbumUri.slice(index);
-
-          console.log(`albumUri: ${albumUri}`);
-
-
           
           item.artists.forEach((artist) => {
             return artists = artists += ', ' + artist.name;
@@ -55,12 +48,11 @@ async function spotifySearch(accessToken, search, setSearchResults) {
           artists = artists.slice(2, artists.length); //Removes first to characters, which are always ', '.
 
           return {
-              id: item.id,
-              songName: item.name,
-              artist: artists,
-              album: item.album.name,
-              albumUri: albumUri,
-              uri: item.uri
+            id: item.id,
+            songName: item.name,
+            artist: artists,
+            album: json.name,
+            albumUri: json.id,
           };
         });
 
@@ -72,4 +64,4 @@ async function spotifySearch(accessToken, search, setSearchResults) {
 
 }
 
-  export default spotifySearch;
+export default spotifyAlbum;

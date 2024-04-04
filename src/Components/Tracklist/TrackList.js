@@ -2,7 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
-function Tracklist({songList, onSelectSong, playlistAnimated}){
+function Tracklist({songList, onSelectSong, onClickAlbum, playlistAnimated}){
     console.log(`TrackList: ${playlistAnimated}`)
 
     if (!songList[0]){
@@ -17,8 +17,10 @@ function Tracklist({songList, onSelectSong, playlistAnimated}){
                                 songName={element.songName}
                                 artist={element.artist}
                                 album={element.album}
+                                albumUri={element.albumUri}
                                 uri={element.uri}
                                 onSelectSong={onSelectSong}
+                                onClickAlbum={onClickAlbum}
                             />
                         );
                     })}
@@ -38,8 +40,10 @@ function Tracklist({songList, onSelectSong, playlistAnimated}){
                                 songName={element.songName}
                                 artist={element.artist}
                                 album={element.album}
+                                albumUri={element.albumUri}
                                 uri={element.uri}
                                 onSelectSong={onSelectSong}
+                                onClickAlbum={onClickAlbum}
                             />
                         );
                     })}

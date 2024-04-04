@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Tracks.module.css';
 
 
-function Track({ id, songName, artist, album, onSelectSong, onRemoveSong }) {
+function Track({ id, songName, artist, album, albumUri, onSelectSong, onRemoveSong, onClickAlbum }) {
 
     if(onSelectSong==='Playlist'){
         return (
@@ -11,7 +11,9 @@ function Track({ id, songName, artist, album, onSelectSong, onRemoveSong }) {
                     <h4 className={styles.songName}>{songName}</h4>
                     <span className={styles.infoSpan}>{artist}</span>
                     <span className={styles.divider}>|</span>
-                    <span className={styles.infoSpan}>{album}</span>
+                    <span 
+                        className={styles.infoSpan}
+                        onClick={onClickAlbum}>{album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>
@@ -31,7 +33,10 @@ function Track({ id, songName, artist, album, onSelectSong, onRemoveSong }) {
                     <h4 className={styles.songName}>{songName}</h4>
                     <span className={styles.infoSpan}>{artist}</span>
                     <span className={styles.divider}>|</span>
-                    <span>{album}</span>
+                    <span 
+                        className={styles.infoSpan}
+                        id={albumUri}
+                        onClick={onClickAlbum}>{album}</span>
                 </div>
 
                 <div className={styles.buttonWrapper}>
