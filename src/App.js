@@ -91,6 +91,13 @@ function App() {
 
     const filtered = selectedSongs.filter((song) => song.id !== songToRemove);
     setSelectedSongs(filtered);
+
+    console.log(selectedSongs);
+
+    if(filtered.length === 0){
+      console.log('Reset animation trigger');
+      setPlaylistAnimated(false);
+    }
   }
 
   //State and event handler managing playlist name
