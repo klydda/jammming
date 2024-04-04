@@ -33,6 +33,11 @@ span {
     margin-right: 5px;
 }
 
+.artists {
+    display: inline;
+    margin-right: 5px;
+}
+
 .divider {
     margin-right: 5px;
 }

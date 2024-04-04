@@ -39,25 +39,28 @@ async function spotifySearch(accessToken, search, setSearchResults) {
     if (json.tracks && json.tracks.items){
         const items = json.tracks.items;
         const songs = items.map((item) =>{
-          let artists = '';
           const rawAlbumUri = item.album.uri;
           const index = rawAlbumUri.lastIndexOf(':') +1;
           const albumUri = rawAlbumUri.slice(index);
 
-          console.log(`albumUri: ${albumUri}`);
-
-
-          
-          item.artists.forEach((artist) => {
-            return artists = artists += ', ' + artist.name;
+          const formatedArtists = item.artists.map((artist) => {
+            return {
+              name: artist.name,
+              id: artist.id
+            }
           });
 
-          artists = artists.slice(2, artists.length); //Removes first to characters, which are always ', '.
+          item.artists.map((artist) => {
+            return {
+              name: artist.name,
+              id: artist.id
+            }
+          });
 
           return {
               id: item.id,
               songName: item.name,
-              artist: artists,
+              artists: formatedArtists,
               album: item.album.name,
               albumUri: albumUri,
               uri: item.uri

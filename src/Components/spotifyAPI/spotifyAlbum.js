@@ -39,18 +39,18 @@ async function spotifyAlbum(accessToken, albumUri, setSearchResults) {
     if (json.tracks && json.tracks.items){
         const items = json.tracks.items;
         const songs = items.map((item) =>{
-          let artists = '';
           
-          item.artists.forEach((artist) => {
-            return artists = artists += ', ' + artist.name;
+          const formatedArtists = item.artists.map((artist) => {
+            return {
+              name: artist.name,
+              id: artist.id
+            }
           });
-
-          artists = artists.slice(2, artists.length); //Removes first to characters, which are always ', '.
 
           return {
             id: item.id,
             songName: item.name,
-            artist: artists,
+            artists: formatedArtists,
             album: json.name,
             albumUri: json.id,
           };

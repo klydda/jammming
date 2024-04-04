@@ -15,7 +15,7 @@ function Tracklist({songList, onSelectSong, onClickAlbum, playlistAnimated}){
                                 key={`song${index}`}
                                 id={element.id}
                                 songName={element.songName}
-                                artist={element.artist}
+                                artists={element.artists}
                                 album={element.album}
                                 albumUri={element.albumUri}
                                 uri={element.uri}
@@ -38,7 +38,7 @@ function Tracklist({songList, onSelectSong, onClickAlbum, playlistAnimated}){
                                 key={`song${index}`}
                                 id={element.id}
                                 songName={element.songName}
-                                artist={element.artist}
+                                artists={element.artists}
                                 album={element.album}
                                 albumUri={element.albumUri}
                                 uri={element.uri}
