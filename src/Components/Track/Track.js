@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Tracks.module.css';
 
 
-function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveSong, onClickAlbum }) {
+function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveSong, onClickAlbum, onClickArtist }) {
 
     if(onSelectSong==='Playlist'){
         return (
@@ -15,7 +15,8 @@ function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveS
                                 return (
                                     <span
                                     id={artist.id}
-                                    key={artist.id}>
+                                    key={artist.id}
+                                    onClick={onClickArtist}>
                                         {index !== artists.length-1 ? `${artist.name}, ` : artist.name}
                                     </span>
                                 );
@@ -51,7 +52,8 @@ function Track({ id, songName, artists, album, albumUri, onSelectSong, onRemoveS
                                 return (
                                     <span
                                     id={artist.id}
-                                    key={artist.id}>
+                                    key={artist.id}
+                                    onClick={onClickArtist}>
                                         {index !== artists.length-1 ? `${artist.name}, ` : artist.name}
                                     </span>
                                 );

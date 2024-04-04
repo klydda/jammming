@@ -2,7 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave, onClickAlbum, playlistAnimated}){
+function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSave, onClickAlbum, onClickArtist, playlistAnimated}){
 
     const animationClass = playlistAnimated && selectedSongs.length > 0 ? styles.animatePlaylist : '';
 
@@ -39,6 +39,7 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSa
                                 onSelectSong="Playlist"
                                 onRemoveSong={onRemoveSong}
                                 onClickAlbum={onClickAlbum}
+                                onClickArtist={onClickArtist}
                             />
                         );
                     })}
@@ -85,6 +86,7 @@ function Playlist({selectedSongs, playlistName, onNameChange, onRemoveSong, onSa
                                 onSelectSong="Playlist"
                                 onRemoveSong={onRemoveSong}
                                 onClickAlbum={onClickAlbum}
+                                onClickArtist={onClickArtist}
                             />
                         );
                     })}

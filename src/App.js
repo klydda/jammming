@@ -10,6 +10,7 @@ import spotifySearch from './Components/spotifyAPI/spotifySearch';
 import spotifyUser from './Components/spotifyAPI/spotifyUser';
 import newPlayList from './Components/spotifyAPI/spotifySavePlaylist';
 import spotifyAlbum from './Components/spotifyAPI/spotifyAlbum';
+import spotifyArtist from './Components/spotifyAPI/spotifyArtist';
 
 //API info
 let accessToken = '';
@@ -53,7 +54,8 @@ function App() {
 
   //Handle click on artist
   function handleArtistClick(e){
-
+    const artistUri = e.target.id;
+    spotifyArtist(accessToken, artistUri, setSearchResults);
   }
 
   //State and state setter that contains the search result as a list of songs
@@ -141,6 +143,7 @@ function App() {
           songList={searchResults}
           onSelectSong={handleSetSelectedSong}
           onClickAlbum={handleAlbumClick}
+          onClickArtist={handleArtistClick}
           playlistAnimated={playlistAnimated}
         />
 
@@ -151,6 +154,7 @@ function App() {
           onNameChange={handlePlaylistNameInput}
           onSave={handleSave}
           onClickAlbum={handleAlbumClick}
+          onClickArtist={handleArtistClick}
           playlistAnimated={playlistAnimated}
         />
         </div>
