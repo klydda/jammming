@@ -1,11 +1,8 @@
-async function spotifySearch(accessToken, search, setSearchResults) {
-    const searchBaseURL = 'https://api.spotify.com/v1/search';
-    const queryBase = '?q=';
-    const generalSearch = encodeURIComponent(search);
-    const type = 'type=track';
-    const queryString = `${queryBase}${generalSearch}&${type}`;
-    const encodedString = encodeURIComponent(queryString);
-    const url = searchBaseURL + queryString;
+
+async function spotifyAlbum(accessToken, albumUri, setSearchResults) {
+    const searchBaseURL = 'https://api.spotify.com/v1/albums/';
+    const id = albumUri;
+    const url = searchBaseURL + id;
 
     try {
       const headers = {
@@ -39,10 +36,7 @@ async function spotifySearch(accessToken, search, setSearchResults) {
     if (json.tracks && json.tracks.items){
         const items = json.tracks.items;
         const songs = items.map((item) =>{
-          const rawAlbumUri = item.album.uri;
-          const index = rawAlbumUri.lastIndexOf(':') +1;
-          const albumUri = rawAlbumUri.slice(index);
-
+          
           const formatedArtists = item.artists.map((artist) => {
             return {
               name: artist.name,
@@ -50,20 +44,12 @@ async function spotifySearch(accessToken, search, setSearchResults) {
             }
           });
 
-          item.artists.map((artist) => {
-            return {
-              name: artist.name,
-              id: artist.id
-            }
-          });
-
           return {
-              id: item.id,
-              songName: item.name,
-              artists: formatedArtists,
-              album: item.album.name,
-              albumUri: albumUri,
-              uri: item.uri
+            id: item.id,
+            songName: item.name,
+            artists: formatedArtists,
+            album: json.name,
+            albumUri: json.id,
           };
         });
 
@@ -75,4 +61,4 @@ async function spotifySearch(accessToken, search, setSearchResults) {
 
 }
 
-  export default spotifySearch;
+export default spotifyAlbum;

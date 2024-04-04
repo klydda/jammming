@@ -2,8 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
-function Tracklist({songList, onSelectSong, playlistAnimated}){
-    console.log(`TrackList: ${playlistAnimated}`)
+function Tracklist({songList, onSelectSong, onClickAlbum, onClickArtist, playlistAnimated}){
 
     if (!songList[0]){
         return (
@@ -15,10 +14,13 @@ function Tracklist({songList, onSelectSong, playlistAnimated}){
                                 key={`song${index}`}
                                 id={element.id}
                                 songName={element.songName}
-                                artist={element.artist}
+                                artists={element.artists}
                                 album={element.album}
+                                albumUri={element.albumUri}
                                 uri={element.uri}
                                 onSelectSong={onSelectSong}
+                                onClickAlbum={onClickAlbum}
+                                onClickArtist={onClickArtist}
                             />
                         );
                     })}
@@ -36,10 +38,13 @@ function Tracklist({songList, onSelectSong, playlistAnimated}){
                                 key={`song${index}`}
                                 id={element.id}
                                 songName={element.songName}
-                                artist={element.artist}
+                                artists={element.artists}
                                 album={element.album}
+                                albumUri={element.albumUri}
                                 uri={element.uri}
                                 onSelectSong={onSelectSong}
+                                onClickAlbum={onClickAlbum}
+                                onClickArtist={onClickArtist}
                             />
                         );
                     })}

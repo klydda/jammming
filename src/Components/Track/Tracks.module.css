@@ -21,6 +21,14 @@ span {
     text-align: left;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
+span.clickable:hover {
+    text-decoration: underline;
+}
+
 .buttonWrapper {
 
 }
@@ -30,6 +38,11 @@ span {
 }
 
 .infoSpan {
+    margin-right: 5px;
+}
+
+.artists {
+    display: inline;
     margin-right: 5px;
 }
 

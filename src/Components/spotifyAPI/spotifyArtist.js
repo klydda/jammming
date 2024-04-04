@@ -1,11 +1,11 @@
-async function spotifySearch(accessToken, search, setSearchResults) {
-    const searchBaseURL = 'https://api.spotify.com/v1/search';
-    const queryBase = '?q=';
-    const generalSearch = encodeURIComponent(search);
-    const type = 'type=track';
-    const queryString = `${queryBase}${generalSearch}&${type}`;
-    const encodedString = encodeURIComponent(queryString);
-    const url = searchBaseURL + queryString;
+
+async function spotifyArtist(accessToken, artistUri, setSearchResults) {
+    const searchBaseURL = 'https://api.spotify.com/v1/artists/';
+    const id = artistUri;
+    const topTracks = '/top-tracks'
+    const url = searchBaseURL + id + topTracks;
+
+    console.log('spotifyArtist was called');
 
     try {
       const headers = {
@@ -26,6 +26,7 @@ async function spotifySearch(accessToken, search, setSearchResults) {
       const data = await response.json();
       
       // Do something with the data
+      console.log(data);
       const processedSongs = formatSongs(data);
       setSearchResults(processedSongs);
       
@@ -36,13 +37,10 @@ async function spotifySearch(accessToken, search, setSearchResults) {
   }
 
   function formatSongs(json){
-    if (json.tracks && json.tracks.items){
-        const items = json.tracks.items;
+    if (json.tracks){
+        const items = json.tracks;
         const songs = items.map((item) =>{
-          const rawAlbumUri = item.album.uri;
-          const index = rawAlbumUri.lastIndexOf(':') +1;
-          const albumUri = rawAlbumUri.slice(index);
-
+          
           const formatedArtists = item.artists.map((artist) => {
             return {
               name: artist.name,
@@ -50,20 +48,12 @@ async function spotifySearch(accessToken, search, setSearchResults) {
             }
           });
 
-          item.artists.map((artist) => {
-            return {
-              name: artist.name,
-              id: artist.id
-            }
-          });
-
           return {
-              id: item.id,
-              songName: item.name,
-              artists: formatedArtists,
-              album: item.album.name,
-              albumUri: albumUri,
-              uri: item.uri
+            id: item.id,
+            songName: item.name,
+            artists: formatedArtists,
+            album: item.album.name,
+            albumUri: item.album.id,
           };
         });
 
@@ -75,4 +65,4 @@ async function spotifySearch(accessToken, search, setSearchResults) {
 
 }
 
-  export default spotifySearch;
+export default spotifyArtist;

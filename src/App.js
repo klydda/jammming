@@ -9,6 +9,8 @@ import { redirectToAuth, extractToken } from './Components/spotifyAPI/spotifyAut
 import spotifySearch from './Components/spotifyAPI/spotifySearch';
 import spotifyUser from './Components/spotifyAPI/spotifyUser';
 import newPlayList from './Components/spotifyAPI/spotifySavePlaylist';
+import spotifyAlbum from './Components/spotifyAPI/spotifyAlbum';
+import spotifyArtist from './Components/spotifyAPI/spotifyArtist';
 
 //API info
 let accessToken = '';
@@ -44,6 +46,18 @@ function App() {
       spotifySearch(accessToken, search, setSearchResults);
   }
 
+  //Handle click on album
+  function handleAlbumClick(e){
+    const albumUri = e.target.id;
+    spotifyAlbum(accessToken, albumUri, setSearchResults);
+  }
+
+  //Handle click on artist
+  function handleArtistClick(e){
+    const artistUri = e.target.id;
+    spotifyArtist(accessToken, artistUri, setSearchResults);
+  }
+
   //State and state setter that contains the search result as a list of songs
   const [searchResults, setSearchResults] = useState([]);
   function handleSearchResults(songs){
@@ -77,6 +91,13 @@ function App() {
 
     const filtered = selectedSongs.filter((song) => song.id !== songToRemove);
     setSelectedSongs(filtered);
+
+    console.log(selectedSongs);
+
+    if(filtered.length === 0){
+      console.log('Reset animation trigger');
+      setPlaylistAnimated(false);
+    }
   }
 
   //State and event handler managing playlist name
@@ -128,6 +149,8 @@ function App() {
         <Tracklist 
           songList={searchResults}
           onSelectSong={handleSetSelectedSong}
+          onClickAlbum={handleAlbumClick}
+          onClickArtist={handleArtistClick}
           playlistAnimated={playlistAnimated}
         />
 
@@ -137,6 +160,8 @@ function App() {
           onRemoveSong={handleRemoveSelectedSong}
           onNameChange={handlePlaylistNameInput}
           onSave={handleSave}
+          onClickAlbum={handleAlbumClick}
+          onClickArtist={handleArtistClick}
           playlistAnimated={playlistAnimated}
         />
         </div>
